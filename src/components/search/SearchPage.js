@@ -10,8 +10,8 @@ export const SearchPage = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    
-    const { q='' } = queryString.parse(location.search)
+
+    const { q = '' } = queryString.parse(location.search)
 
     const [formValues, handleInputChange] = useForm({
         searchText: q
@@ -27,13 +27,13 @@ export const SearchPage = () => {
     }, [searchText])
 
     useEffect(() => {
-        navigate(`?q=${ searchText }`)
-    }, [searchText])
+        navigate(`?q=${searchText}`)
+    }, [searchText, navigate])
 
-    const handleSearch = (e) =>  {
+    const handleSearch = (e) => {
 
         e.preventDefault();
-        navigate(`?q=${ searchText }`);
+        navigate(`?q=${searchText}`);
 
     }
 
@@ -41,51 +41,51 @@ export const SearchPage = () => {
     return (
         <div>
             <h1>Search page</h1>
-            <hr/>
+            <hr />
 
             <div className='row'>
 
                 <div className='col-5'>
                     <h4>Buscar</h4>
-                    <hr/>
+                    <hr />
 
-                    <form onSubmit={ handleSearch }> 
-                        <input 
+                    <form onSubmit={handleSearch}>
+                        <input
                             type='text'
                             placeholder='Search for a hero'
                             className='form-control'
                             name='searchText'
                             autoComplete='off'
-                            value={ searchText }
-                            onChange={ handleInputChange }
+                            value={searchText}
+                            onChange={handleInputChange}
                         />
 
-                        <button 
+                        <button
                             type='submit'
                             className='btn brn-outline mt-1'
-                            onClick={ handleSearch }
+                            onClick={handleSearch}
                         >
                             Search...
                         </button>
-                        
+
                     </form>
                 </div>
 
                 <div className='col-7'>
                     <h4>Results</h4>
-                    <hr/>
+                    <hr />
 
                     {
                         (q === '') ?
-                        <div className="alert-info alert animate__fadeIn animate__animated">Search for a superhero.</div>
-                        : ( heroesFiltered.length === 0 )
-                            && <div id='error' className='alert alert-danger animate__fadeIn animate__animated'>No results for "{ q }"</div>
+                            <div className="alert-info alert animate__fadeIn animate__animated">Search for a superhero.</div>
+                            : (heroesFiltered.length === 0)
+                            && <div id='error' className='alert alert-danger animate__fadeIn animate__animated'>No results for "{q}"</div>
                     }
 
                     {
-                        heroesFiltered.map( hero => (
-                            <HeroCard 
-                                key={ hero.id }
+                        heroesFiltered.map(hero => (
+                            <HeroCard
+                                key={hero.id}
                                 {...hero}
                             />
                         ))
