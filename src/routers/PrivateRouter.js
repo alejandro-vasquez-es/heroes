@@ -8,9 +8,9 @@ export const PrivateRouter = ({ children }) => {
     const { user } = useContext(AuthContext);
     const { pathname, search } = useLocation();
 
-    localStorage.setItem('lastPath', pathname + search);
+    localStorage.setItem('lastPath', process.env.REACT_APP_URL + pathname + search);
 
     return user.logged
         ? children
-        : <Navigate to='/login' />
+        : <Navigate to={`${process.env.REACT_APP_URL}/login`} />
 };

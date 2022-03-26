@@ -10,20 +10,20 @@ import { HeroPage } from "../components/hero/HeroPage.js"
 export const DashboardRoutes = () => {
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className='container mt-3'>
                 <Routes>
-                    <Route path='marvel' element={<MarvelPage />}/>
-                    <Route path='dc' element={<DcPage />}/>
+                    <Route path={`${process.env.REACT_APP_URL}/marvel`} element={<MarvelPage />} />
+                    <Route path={`${process.env.REACT_APP_URL}/dc`} element={<DcPage />} />
 
-                    <Route path=':pub/hero/:heroId' element={<HeroPage />}/>
+                    <Route path={`${process.env.REACT_APP_URL}/:pub/hero/:heroId`} element={<HeroPage />} />
 
-                    <Route path='search' element={<SearchPage />}/>
-                    
-                    <Route path='/' element={<MarvelPage />}/>
+                    <Route path={`${process.env.REACT_APP_URL}/search`} element={<SearchPage />} />
+
+                    <Route path={`${process.env.REACT_APP_URL}/`} element={<MarvelPage />} />
                 </Routes>
             </div>
-            
+
         </>
     )
 }

@@ -13,17 +13,19 @@ export const AppRouter = () => {
 
             <Routes>
 
-                <Route path='/login' element={
+                {console.log(process.env.REACT_APP_URL, process.env)}
+
+                <Route path={`${process.env.REACT_APP_URL}/login`} element={
                     <PublicRoute>
                         <LoginPage />
                     </PublicRoute>
                 } />
-                <Route path='/*' element={ 
+                <Route path={`${process.env.REACT_APP_URL}/*`} element={
                     <PrivateRouter>
                         <DashboardRoutes />
                     </PrivateRouter>
                 } />
-                
+
             </Routes>
 
         </BrowserRouter>
